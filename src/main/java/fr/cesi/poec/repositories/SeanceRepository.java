@@ -9,5 +9,5 @@ import org.springframework.stereotype.Repository;
 //l'interface Crudrepository implémente les methodes CRUD classiques
 //CrudRepository<Type de l'entité, type de l'ID>
 @Repository
-public interface SceanceRepository extends CrudRepository<Seance, Long> {
+public interface SeanceRepository extends CrudRepository<Seance, Long> {
 }

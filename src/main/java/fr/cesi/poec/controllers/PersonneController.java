@@ -28,7 +28,7 @@ public class PersonneController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Personne> getSceanceById(@PathVariable Long id) {
+    public ResponseEntity<Personne> getPersonneById(@PathVariable Long id) {
         Personne personne = this.personneRepository.findById(id).orElse(null);
         if (personne != null) {
             return new ResponseEntity<Personne>(personne, HttpStatus.OK);
@@ -38,7 +38,7 @@ public class PersonneController {
     }
 
     @PostMapping
-    public ResponseEntity<Personne> createSceance(@RequestBody Personne personne) {
+    public ResponseEntity<Personne> createPersonne(@RequestBody Personne personne) {
         personne = this.personneRepository.save(personne);
         System.out.println("Personne created : " + personne.getId());
         return new ResponseEntity<Personne>(personne, HttpStatus.CREATED);

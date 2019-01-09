@@ -1,6 +1,7 @@
 package fr.cesi.poec.entities;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -32,7 +33,7 @@ public class Cinema {
     private String paysCinema;
     //mappedBy => attribut sur lequel il est mappé dans l'autre classe
     @OneToMany(mappedBy = "cinema")
-    //@JsonBackReference(value = "plans")
+    @JsonManagedReference(value = "plans")
     @Cascade(org.hibernate.annotations.CascadeType.DELETE)
     private List<PlanSalle> plans;
 
