@@ -19,6 +19,9 @@ public class Salle {
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     @Column( name = "IDSalle" )
     private Long id;
+    @ManyToOne
+    @JsonBackReference
+    private PlanSalle plan;
     @OneToOne
     @JsonBackReference
     private Seance seance;

@@ -1,10 +1,12 @@
 package fr.cesi.poec.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 
 
 @Entity(name="cinema")
@@ -27,5 +29,8 @@ public class Cinema {
     private String VilleCinema;
     @Column( name = "PaysCinema" )
     private String PaysCinema;
+    @OneToMany(mappedBy = "Cinema")
+    @JsonBackReference
+    private List<PlanSalle> planSalles;
 
 }

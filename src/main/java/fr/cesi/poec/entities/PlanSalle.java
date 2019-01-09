@@ -18,10 +18,10 @@ public class PlanSalle {
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     @Column( name = "IDPlanSalle" )
     private Long id;
-    @OneToOne
-    @JsonBackReference
-    private Salle salle;
     @Column( name = "Plan" )
     private String plan;
+    @ManyToOne
+    @JsonBackReference
+    private Cinema cinema;
 
 }
