@@ -45,12 +45,10 @@ public class PersonneController {
     }
 
     @PutMapping
-    public ResponseEntity<Personne> updatePersonne(@RequestBody Personne s) {
-        //recup l'elem existant
-        //sauver l'elem avec les modifs
-        if ( this.personneRepository.existsById(s.getId()) ) {
-            this.personneRepository.save(s);
-            return new ResponseEntity<Personne>(s, HttpStatus.CREATED);
+    public ResponseEntity<Personne> updatePersonne(@RequestBody Personne personne) {
+        if ( this.personneRepository.existsById(personne.getId()) ) {
+            this.personneRepository.save(personne);
+            return new ResponseEntity<Personne>(personne, HttpStatus.CREATED);
         } else {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }

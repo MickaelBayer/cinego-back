@@ -33,7 +33,7 @@ public class Cinema {
     private String paysCinema;
     //mappedBy => attribut sur lequel il est mappé dans l'autre classe
     @OneToMany(mappedBy = "cinema")
-    @JsonManagedReference(value = "plans")
+    @JsonManagedReference(value = "cinema_plan_fk")
     @Cascade(org.hibernate.annotations.CascadeType.DELETE)
     private List<PlanSalle> plans;
 

@@ -63,6 +63,21 @@ public class FilmController {
 
     /**
      *
+     * @param film
+     * @return
+     */
+    @PutMapping
+    public ResponseEntity<Film> updateFilm(@RequestBody Film film) {
+        if ( this.filmRepository.existsById(film.getId()) ) {
+            this.filmRepository.save(film);
+            return new ResponseEntity<Film>(film, HttpStatus.CREATED);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+    }
+    
+    /**
+     *
      * @param id
      * @return
      */

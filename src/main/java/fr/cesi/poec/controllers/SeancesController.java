@@ -57,8 +57,6 @@ public class SeancesController {
 
     @PutMapping
     public ResponseEntity<Seance> updateSeance(@RequestBody Seance s) {
-        //recup l'elem existant
-        //sauver l'elem avec les modifs
         if ( this.seanceRepository.existsById(s.getId()) ) {
             this.seanceRepository.save(s);
             return new ResponseEntity<Seance>(s, HttpStatus.CREATED);

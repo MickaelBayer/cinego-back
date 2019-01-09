@@ -63,6 +63,21 @@ public class SiegeController {
 
     /**
      *
+     * @param siege
+     * @return
+     */
+    @PutMapping
+    public ResponseEntity<Siege> updateSiege(@RequestBody Siege siege) {
+        if ( this.siegeRepository.existsById(siege.getId()) ) {
+            this.siegeRepository.save(siege);
+            return new ResponseEntity<Siege>(siege, HttpStatus.CREATED);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+    }
+
+    /**
+     *
      * @param id
      * @return
      */

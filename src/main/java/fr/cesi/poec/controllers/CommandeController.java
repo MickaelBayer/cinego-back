@@ -63,6 +63,21 @@ public class CommandeController {
 
     /**
      *
+     * @param commande
+     * @return
+     */
+    @PutMapping
+    public ResponseEntity<Commande> updateCommande(@RequestBody Commande commande) {
+        if ( this.commandeRepository.existsById(commande.getId()) ) {
+            this.commandeRepository.save(commande);
+            return new ResponseEntity<Commande>(commande, HttpStatus.CREATED);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+    }
+    
+    /**
+     *
      * @param id
      * @return
      */

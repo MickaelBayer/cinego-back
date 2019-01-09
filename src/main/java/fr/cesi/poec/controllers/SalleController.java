@@ -63,6 +63,21 @@ public class SalleController {
 
     /**
      *
+     * @param salle
+     * @return
+     */
+    @PutMapping
+    public ResponseEntity<Salle> updateSalle(@RequestBody Salle salle) {
+        if ( this.salleRepository.existsById(salle.getId()) ) {
+            this.salleRepository.save(salle);
+            return new ResponseEntity<Salle>(salle, HttpStatus.CREATED);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+    }
+    
+    /**
+     *
      * @param id
      * @return
      */

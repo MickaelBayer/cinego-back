@@ -1,6 +1,7 @@
 package fr.cesi.poec.entities;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -24,10 +25,10 @@ public class PlanSalle {
     private String plan;
     @JoinColumn(name = "idcinema")
     @ManyToOne
-    @JsonBackReference(value = "cinema")
+    @JsonBackReference(value = "cinema_plan_fk")
     private Cinema cinema;
     @OneToMany(mappedBy = "plan")
-    //@JsonBackReference(value = "salles")
+    @JsonManagedReference(value = "plansalle_salle_fk")
     @Cascade(org.hibernate.annotations.CascadeType.DELETE)
     private List<Salle> salles;
 

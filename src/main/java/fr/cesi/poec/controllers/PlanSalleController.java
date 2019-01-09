@@ -1,6 +1,7 @@
 package fr.cesi.poec.controllers;
 
 import fr.cesi.poec.entities.PlanSalle;
+import fr.cesi.poec.entities.PlanSalle;
 import fr.cesi.poec.repositories.PlanSalleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -61,6 +62,21 @@ public class PlanSalleController {
         return new ResponseEntity<PlanSalle>(planSalle, HttpStatus.CREATED);
     }
 
+    /**
+     *
+     * @param planSalle
+     * @return
+     */
+    @PutMapping
+    public ResponseEntity<PlanSalle> updatePlanSalle(@RequestBody PlanSalle planSalle) {
+        if ( this.planSalleRepository.existsById(planSalle.getId()) ) {
+            this.planSalleRepository.save(planSalle);
+            return new ResponseEntity<PlanSalle>(planSalle, HttpStatus.CREATED);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+    }
+    
     /**
      *
      * @param id

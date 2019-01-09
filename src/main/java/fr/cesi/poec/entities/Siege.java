@@ -26,6 +26,6 @@ public class Siege {
     private int numRangee;
     @JoinColumn(name = "idsalle")
     @ManyToOne
-    @JsonBackReference(value = "salle")
+    @JsonBackReference(value = "sieges_salle_fk")
     private Salle salle;
 }

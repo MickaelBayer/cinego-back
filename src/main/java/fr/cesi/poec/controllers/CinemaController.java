@@ -63,6 +63,21 @@ public class CinemaController {
 
     /**
      *
+     * @param cinema
+     * @return
+     */
+    @PutMapping
+    public ResponseEntity<Cinema> updateCinema(@RequestBody Cinema cinema) {
+        if ( this.cinemaRepository.existsById(cinema.getId()) ) {
+            this.cinemaRepository.save(cinema);
+            return new ResponseEntity<Cinema>(cinema, HttpStatus.CREATED);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+    }
+
+    /**
+     *
      * @param id
      * @return
      */

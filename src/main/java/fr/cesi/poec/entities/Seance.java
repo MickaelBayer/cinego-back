@@ -29,11 +29,11 @@ public class Seance {
     private Date date;
     @JoinColumn(name = "idfilm")
     @ManyToOne()
-    @JsonBackReference
+    @JsonBackReference(value = "film_seance_fk")
     private Film film;
     @JoinColumn(name = "idsalle")
     @OneToOne
-    @JsonBackReference
+    @JsonBackReference(value = "salle_seance_fk")
     @Cascade(org.hibernate.annotations.CascadeType.DELETE)
     private Salle salle;
 
