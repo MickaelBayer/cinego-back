@@ -43,7 +43,6 @@ public class SceancesController {
         return new ResponseEntity<Seance>(s, HttpStatus.CREATED);
     }
 
-    //
     @GetMapping("/{id}")
     public ResponseEntity<Seance> getSceanceById(@PathVariable Long id) {
         //this.sceanceRepository.findById(id) => renvoie un optional qui donne accès à des fonctions de controle

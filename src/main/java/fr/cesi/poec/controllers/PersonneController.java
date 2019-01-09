@@ -9,9 +9,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-// Annotation qui permet de mapper des méthodes à des urls
+
 @RestController
-//La racine de toutes les routes de ce controller
 @RequestMapping("/user")
 public class PersonneController {
 
@@ -30,7 +29,6 @@ public class PersonneController {
 
     @GetMapping("/{id}")
     public ResponseEntity<Personne> getSceanceById(@PathVariable Long id) {
-        //this.sceanceRepository.findById(id) => renvoie un optional qui donne accès à des fonctions de controle
         Personne personne = this.personneRepository.findById(id).orElse(null);
         if (personne != null) {
             return new ResponseEntity<Personne>(personne, HttpStatus.OK);
@@ -40,9 +38,6 @@ public class PersonneController {
     }
 
     @PostMapping
-    //@RequestBody -> pour dire d'aller le chercher dans le body de la req
-    //ResponseEntity<Void> => renvoyer un statut particulier
-    //ResponseEntity<Seance> => renvoye une Seance
     public ResponseEntity<Personne> createSceance(@RequestBody Personne personne) {
         personne = this.personneRepository.save(personne);
         System.out.println("Personne created : " + personne.getId());

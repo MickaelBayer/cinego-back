@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -22,15 +23,18 @@ public class Seance {
     //precision avec annotation de l'ID
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
-    @Column( name = "IDSeance" )
+    @Column( name = "idseance" )
     private Long id;
-    @Column( name = "DateSeance" )
+    @Column( name = "dateseance" )
     private Date date;
-    @ManyToOne
+    @JoinColumn(name = "idfilm")
+    @ManyToOne()
     @JsonBackReference
     private Film film;
+    @JoinColumn(name = "idsalle")
     @OneToOne
     @JsonBackReference
+    @Cascade(org.hibernate.annotations.CascadeType.DELETE)
     private Salle salle;
 
 }

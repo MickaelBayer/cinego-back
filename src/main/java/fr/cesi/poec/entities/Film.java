@@ -1,10 +1,10 @@
 package fr.cesi.poec.entities;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.sun.org.apache.regexp.internal.StreamCharacterIterator;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
 import java.util.List;
@@ -18,22 +18,23 @@ public class Film {
 
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
-    @Column( name = "IDFilm" )
+    @Column( name = "idfilm" )
     private Long id;
-    @Column( name = "NomFilm" )
+    @Column( name = "nomfilm" )
     private String nom;
-    @Column( name = "Image" )
+    @Column( name = "image" )
     private String imgUrl;
-    @Column( name = "Genre" )
+    @Column( name = "genre" )
     private String genre;
-    @Column( name = "Duree" )
+    @Column( name = "duree" )
     private int duree;
-    @Column( name = "Realisateur" )
+    @Column( name = "realisateur" )
     private String realisateur;
-    @Column( name = "ListeActeurs" )
+    @Column( name = "listeacteurs" )
     private String acteurs;
-    @OneToMany(mappedBy = "Film")
+    @OneToMany(mappedBy = "film")
     @JsonBackReference
+    @Cascade(org.hibernate.annotations.CascadeType.DELETE)
     private List<Seance> seances;
 
 }

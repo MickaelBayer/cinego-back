@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
 import java.util.List;
@@ -17,17 +18,19 @@ public class Commande {
 
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
-    @Column( name = "IDCommande" )
+    @Column( name = "idcommande" )
     private Long id;
-    @Column( name = "NbrPlaceReservees" )
+    @Column( name = "nbrplacereservees" )
     private int nbPlaces;
-    @Column( name = "EstPaye" )
+    @Column( name = "estpaye" )
     private boolean estPaye;
-    @Column( name = "CoutReservation" )
-    private int CoutReservation;
+    @Column( name = "coutreservation" )
+    private float CoutReservation;
+    @JoinColumn(name = "idpersonne")
     @ManyToOne
     @JsonBackReference
     private Personne personne;
+    @JoinColumn(name = "idseance")
     @ManyToOne
     @JsonBackReference
     private Seance seance;
@@ -36,14 +39,16 @@ public class Commande {
     @JoinTable(
             name = "reserve",
             joinColumns = @JoinColumn(
-                    name = "IDCommande",
-                    referencedColumnName = "IDCommande"
+                    name = "idcommande",
+                    referencedColumnName = "idcommande"
             ),
             inverseJoinColumns = @JoinColumn(
-                    name = "IDSiege",
-                    referencedColumnName = "IDSiege"
+                    name = "idsiege",
+                    referencedColumnName = "idsiege"
             )
     )
     @OneToMany
+    @JsonBackReference
+    @Cascade(org.hibernate.annotations.CascadeType.DELETE)
     private List<Siege> sieges;
 }

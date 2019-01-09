@@ -16,15 +16,16 @@ public class Siege {
 
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
-    @Column( name = "IDSiege" )
+    @Column( name = "idsiege" )
     private Long id;
-    @Column( name = "EstReserve" )
+    @Column( name = "estreserve" )
     private boolean estReserve;
-    @Column( name = "TypeSiege" )
+    @Column( name = "typesiege" )
     private String type;
-    @Column( name = "NumRangee" )
+    @Column( name = "numrangee" )
     private int numRangee;
+    @JoinColumn(name = "idsalle")
     @ManyToOne
-    @JsonBackReference
+    @JsonBackReference(value = "salle")
     private Salle salle;
 }
