@@ -12,7 +12,7 @@ import java.util.List;
 // Annotation qui permet de mapper des méthodes à des urls
 @RestController
 //La racine de toutes les routes de ce controller
-@RequestMapping("/sceances")
+@RequestMapping("/seances")
 public class SceancesController {
 
     private SceanceRepository sceanceRepository;
