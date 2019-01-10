@@ -25,7 +25,7 @@ public class Commande {
     @Column( name = "estpaye" )
     private boolean estPaye;
     @Column( name = "coutreservation" )
-    private float CoutReservation;
+    private float coutReservation;
     @JoinColumn(name = "idpersonne")
     @ManyToOne
     @JsonBackReference(value = "personne_commande_fk")
