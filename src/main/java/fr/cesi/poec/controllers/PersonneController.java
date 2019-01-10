@@ -5,6 +5,7 @@ import fr.cesi.poec.repositories.PersonneRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -15,10 +16,13 @@ import java.util.List;
 public class PersonneController {
 
     private PersonneRepository personneRepository;
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Autowired
-    public PersonneController(PersonneRepository personneRepository) {
+    public PersonneController(PersonneRepository personneRepository,
+                              BCryptPasswordEncoder bCryptPasswordEncoder) {
         this.personneRepository = personneRepository;
+        this.bCryptPasswordEncoder = bCryptPasswordEncoder;
     }
 
     @GetMapping
@@ -37,8 +41,10 @@ public class PersonneController {
         }
     }
 
-    @PostMapping
+    @PostMapping("/sign-up")
     public ResponseEntity<Personne> createPersonne(@RequestBody Personne personne) {
+        System.out.println(personne);
+        personne.setMdpH5(bCryptPasswordEncoder.encode(personne.getMdpH5()));
         personne = this.personneRepository.save(personne);
         System.out.println("Personne created : " + personne.getId());
         return new ResponseEntity<Personne>(personne, HttpStatus.CREATED);

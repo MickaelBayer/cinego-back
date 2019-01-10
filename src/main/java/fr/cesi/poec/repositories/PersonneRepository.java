@@ -10,4 +10,8 @@ import org.springframework.stereotype.Repository;
 //CrudRepository<Type de l'entité, type de l'ID>
 @Repository
 public interface PersonneRepository extends CrudRepository<Personne, Long> {
+
+
+    public Personne findPersonneByMail(String mail);
+
 }

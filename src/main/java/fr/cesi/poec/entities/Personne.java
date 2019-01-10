@@ -1,6 +1,6 @@
 package fr.cesi.poec.entities;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -36,14 +36,12 @@ public class Personne {
     private String mail;
     @Column( name = "tel" )
     private int tel;
-    @Column( name = "statut" )
-    private String statut;
+    @Column( name = "admin" )
+    private boolean admin;
     @Column( name = "mdph5" )
     private String mdpH5;
-    @Column( name = "graindesel" )
-    private String grainDeSel;
     @OneToMany(mappedBy = "personne")
-    @JsonBackReference
+    @JsonManagedReference(value = "personne_commande_fk")
     @Cascade(org.hibernate.annotations.CascadeType.DELETE)
     private List<Commande> commandes;
 

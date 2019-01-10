@@ -28,11 +28,11 @@ public class Commande {
     private float CoutReservation;
     @JoinColumn(name = "idpersonne")
     @ManyToOne
-    @JsonBackReference
+    @JsonBackReference(value = "personne_commande_fk")
     private Personne personne;
     @JoinColumn(name = "idseance")
     @ManyToOne
-    @JsonBackReference
+    @JsonBackReference(value = "commande_seance_fk")
     private Seance seance;
     //JoinTable => joinColumns = colonne de la join table corresponsant à l'id de la classe en cours
     //          => inverseJoinColumns = colonne de l'id correspondant à l'item dans la liste
@@ -48,7 +48,7 @@ public class Commande {
             )
     )
     @OneToMany
-    @JsonBackReference
+    @JsonBackReference(value = "commande_siege_fk")
     @Cascade(org.hibernate.annotations.CascadeType.DELETE)
     private List<Siege> sieges;
 }
