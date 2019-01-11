@@ -39,10 +39,18 @@ public class Personne {
     @Column( name = "admin" )
     private boolean admin;
     @Column( name = "mdph5" )
-    private String mdpH5;
+    private String mdph5;
     @OneToMany(mappedBy = "personne")
     @JsonManagedReference(value = "personne_commande_fk")
     @Cascade(org.hibernate.annotations.CascadeType.DELETE)
     private List<Commande> commandes;
+
+    public Personne(Long id, String nom, String prenom, String mail, String mdph5) {
+        this.id = id;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.mail = mail;
+        this.mdph5 = mdph5;
+    }
 
 }

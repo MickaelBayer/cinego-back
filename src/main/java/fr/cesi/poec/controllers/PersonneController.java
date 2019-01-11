@@ -44,7 +44,7 @@ public class PersonneController {
     @PostMapping("/sign-up")
     public ResponseEntity<Personne> createPersonne(@RequestBody Personne personne) {
         System.out.println(personne);
-        personne.setMdpH5(bCryptPasswordEncoder.encode(personne.getMdpH5()));
+        personne.setMdph5(bCryptPasswordEncoder.encode(personne.getMdph5()));
         personne = this.personneRepository.save(personne);
         System.out.println("Personne created : " + personne.getId());
         return new ResponseEntity<Personne>(personne, HttpStatus.CREATED);

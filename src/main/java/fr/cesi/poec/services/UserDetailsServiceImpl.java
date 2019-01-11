@@ -10,11 +10,12 @@ import org.springframework.stereotype.Service;
 
 import static java.util.Collections.emptyList;
 
+
 @Service
-public class PersonneDetailsServiceImpl implements UserDetailsService {
+public class UserDetailsServiceImpl implements UserDetailsService {
     private PersonneRepository personneRepository;
 
-    public PersonneDetailsServiceImpl(PersonneRepository personneRepository) {
+    public UserDetailsServiceImpl(PersonneRepository personneRepository) {
         this.personneRepository = personneRepository;
     }
 
@@ -24,6 +25,7 @@ public class PersonneDetailsServiceImpl implements UserDetailsService {
         if (personne == null) {
             throw new UsernameNotFoundException(mail);
         }
-        return new User(personne.getMail(), personne.getMdpH5(), emptyList());
+        return new User(personne.getMail(), personne.getMdph5(), emptyList());
     }
+
 }
