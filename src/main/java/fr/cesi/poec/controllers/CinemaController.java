@@ -34,7 +34,7 @@ public class CinemaController {
                 HttpStatus.OK);
     }
 
-    /**
+    /**findWithIdFilm
      *
      * @param id
      * @return
@@ -47,6 +47,13 @@ public class CinemaController {
         } else {
             return new ResponseEntity<Cinema>(HttpStatus.NO_CONTENT);
         }
+    }
+
+    @GetMapping("/film/{idFilm}")
+    public ResponseEntity<List<Cinema>> getCinemasWithIdFilm(@PathVariable Long idFilm) {
+        return new ResponseEntity<List<Cinema>>(
+                (List<Cinema>)this.cinemaRepository.findWithIdFilm(idFilm),
+                HttpStatus.OK);
     }
 
     /**

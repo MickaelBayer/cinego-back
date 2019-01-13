@@ -27,9 +27,9 @@ public class PlanSalle {
     @ManyToOne
     @JsonBackReference(value = "cinema_plan_fk")
     private Cinema cinema;
-    @OneToMany(mappedBy = "plan")
-    @JsonManagedReference(value = "plansalle_salle_fk")
+    @OneToMany(mappedBy = "planSalle")
+    @JsonManagedReference(value = "plansalle_seance_fk")
     @Cascade(org.hibernate.annotations.CascadeType.DELETE)
-    private List<Salle> salles;
+    private List<Seance> seances;
 
 }

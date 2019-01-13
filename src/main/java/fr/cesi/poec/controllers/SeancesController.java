@@ -54,6 +54,12 @@ public class SeancesController {
         }
     }
 
+    @GetMapping("/{idCinema}/{idFilm}")
+    public ResponseEntity<List<Seance>> getSeancesByCinemaAndFilm(@PathVariable Long idCinema, @PathVariable Long idFilm) {
+       return new ResponseEntity<List<Seance>>(
+                (List<Seance>)this.seanceRepository.findWithIdCinemaAndIdFilm(idCinema,idFilm),
+                HttpStatus.OK);
+    }
 
     @PutMapping
     public ResponseEntity<Seance> updateSeance(@RequestBody Seance s) {

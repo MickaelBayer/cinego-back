@@ -13,7 +13,7 @@ import java.util.List;
  *
  */
 @RestController
-@RequestMapping("/film")
+@RequestMapping("/films")
 public class FilmController {
 
     private FilmRepository filmRepository;
@@ -46,6 +46,17 @@ public class FilmController {
             return new ResponseEntity<Film>(film, HttpStatus.OK);
         } else {
             return new ResponseEntity<Film>(HttpStatus.NO_CONTENT);
+        }
+    }
+
+
+    @GetMapping("/cinema/{idCinema}")
+    public ResponseEntity<List<Film>> getFilmWithIdCinema(@PathVariable Long idCinema) {
+        List<Film> films = this.filmRepository.findWithIdCinema(idCinema);// .orElse(null) do not work here
+        if (films != null) {
+            return new ResponseEntity<List<Film>>(films, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<List<Film>>(HttpStatus.NO_CONTENT);
         }
     }
 

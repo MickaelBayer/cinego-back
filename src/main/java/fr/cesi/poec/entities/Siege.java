@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
 
@@ -22,10 +23,13 @@ public class Siege {
     private boolean estReserve;
     @Column( name = "typesiege" )
     private String type;
+    @Column( name = "numsiege" )
+    private int numSiege;
     @Column( name = "numrangee" )
     private int numRangee;
-    @JoinColumn(name = "idsalle")
-    @ManyToOne
-    @JsonBackReference(value = "sieges_salle_fk")
-    private Salle salle;
+    @JoinColumn(name = "idseance")
+    @OneToOne
+    @JsonBackReference(value = "siege_seance_fk")
+    @Cascade(org.hibernate.annotations.CascadeType.DELETE)
+    private Seance seance;
 }

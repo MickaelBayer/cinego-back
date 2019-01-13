@@ -32,6 +32,8 @@ public class Film {
     private String realisateur;
     @Column( name = "listeacteurs" )
     private String acteurs;
+    @Column( name = "resume" )
+    private String resume;
     @OneToMany(mappedBy = "film")
     @JsonManagedReference(value = "film_seance_fk")
     @Cascade(org.hibernate.annotations.CascadeType.DELETE)

@@ -16,5 +16,8 @@ import java.util.List;
 public interface SeanceRepository extends CrudRepository<Seance, Long> {
 
     //Query(value = "SELECT * FROM seance WHERE dateseance LIKE %?1%", nativeQuery = true)
-    public List<Seance> findByDateLike (Date d);
+    //public List<Seance> findByDateLike (Date d);
+
+    @Query(value = "SELECT * FROM seance c, plansalle p WHERE c.idfilm = ?2 AND c.idplansalle = p.idplansalle AND p.idcinema = ?1", nativeQuery = true)
+    public List<Seance> findWithIdCinemaAndIdFilm (float idCinema, float idFilm);
 }

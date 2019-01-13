@@ -30,8 +30,8 @@ public class Salle {
     @JsonManagedReference(value = "salle_seance_fk")
     @Cascade(org.hibernate.annotations.CascadeType.DELETE)
     private Seance seance;
-    @OneToMany(mappedBy = "salle")
+    /*@OneToMany(mappedBy = "salle")
     @JsonManagedReference(value = "sieges_salle_fk")
     @Cascade(org.hibernate.annotations.CascadeType.DELETE)
-    private List<Siege> sieges;
+    private List<Siege> sieges;*/
 }
