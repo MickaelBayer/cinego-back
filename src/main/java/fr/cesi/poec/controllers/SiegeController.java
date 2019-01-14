@@ -49,6 +49,13 @@ public class SiegeController {
         }
     }
 
+    @GetMapping("/seance/{idSeance}")
+    public ResponseEntity<List<Siege>> getSiegesWithSeance(@PathVariable Long idSeance) {
+        return new ResponseEntity<List<Siege>>(
+                (List<Siege>)this.siegeRepository.findWithSeance(idSeance),
+                HttpStatus.OK);
+    }
+
     /**
      *
      * @param siege

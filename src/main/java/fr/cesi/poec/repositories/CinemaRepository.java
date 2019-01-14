@@ -15,5 +15,8 @@ import java.util.List;
 public interface CinemaRepository extends CrudRepository<Cinema, Long> {
 
     @Query(value = "SELECT * FROM cinema c INNER JOIN plansalle p ON c.idcinema = p.idcinema INNER JOIN seance s ON p.idplanSalle = s.idplanSalle WHERE s.idfilm = ?1 GROUP BY c.idcinema", nativeQuery = true)
-    public List<Cinema> findWithIdFilm (float idFilm);
+    public List<Cinema> findWithIdFilm (Long idFilm);
+
+    @Query(value = "SELECT * FROM cinema c INNER JOIN plansalle p ON c.idcinema = p.idcinema INNER JOIN seance s ON p.idplanSalle = s.idplanSalle WHERE s.idSeance = ?1 GROUP BY c.idcinema", nativeQuery = true)
+    public Cinema findWithSeance (Long idSeance);
 }

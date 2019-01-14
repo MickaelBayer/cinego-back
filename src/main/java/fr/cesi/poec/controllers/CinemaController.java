@@ -34,7 +34,7 @@ public class CinemaController {
                 HttpStatus.OK);
     }
 
-    /**findWithIdFilm
+    /**
      *
      * @param id
      * @return
@@ -49,10 +49,22 @@ public class CinemaController {
         }
     }
 
+    /**
+     *
+     * @param idFilm
+     * @return
+     */
     @GetMapping("/film/{idFilm}")
     public ResponseEntity<List<Cinema>> getCinemasWithIdFilm(@PathVariable Long idFilm) {
         return new ResponseEntity<List<Cinema>>(
                 (List<Cinema>)this.cinemaRepository.findWithIdFilm(idFilm),
+                HttpStatus.OK);
+    }
+
+    @GetMapping("/seance/{idSeance}")
+    public ResponseEntity<Cinema> getCinemasWithIdseance(@PathVariable Long idSeance) {
+        return new ResponseEntity<Cinema>(
+                (Cinema)this.cinemaRepository.findWithSeance(idSeance),
                 HttpStatus.OK);
     }
 

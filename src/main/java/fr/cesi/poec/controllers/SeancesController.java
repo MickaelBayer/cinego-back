@@ -1,5 +1,6 @@
 package fr.cesi.poec.controllers;
 
+import fr.cesi.poec.entities.Film;
 import fr.cesi.poec.entities.Seance;
 import fr.cesi.poec.repositories.SeanceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,6 +44,7 @@ public class SeancesController {
         return new ResponseEntity<Seance>(s, HttpStatus.CREATED);
     }
 
+
     @GetMapping("/{id}")
     public ResponseEntity<Seance> getSeanceById(@PathVariable Long id) {
         //this.seanceRepository.findById(id) => renvoie un optional qui donne accès à des fonctions de controle
@@ -52,6 +54,13 @@ public class SeancesController {
         } else {
             return new ResponseEntity<Seance>(HttpStatus.NO_CONTENT);
         }
+    }
+
+    @GetMapping("/film/{idFilm}")
+    public ResponseEntity<List<Seance>> getSeanceWithFilm(@PathVariable Long idFilm) {
+        return new ResponseEntity<List<Seance>>(
+                (List<Seance>)this.seanceRepository.findWithFilm(idFilm),
+                HttpStatus.OK);
     }
 
     @GetMapping("/{idCinema}/{idFilm}")
