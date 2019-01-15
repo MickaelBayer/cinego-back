@@ -21,13 +21,13 @@ public class Salle {
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     @Column( name = "idsalle" )
     private Long id;
+    //@JsonBackReference(value = "plansalle_salle_fk")
     @JoinColumn(name = "idplansalle")
     @ManyToOne
-    @JsonBackReference(value = "plansalle_salle_fk")
     private PlanSalle plan;
+    // @JsonManagedReference(value = "salle_seance_fk")
     @JoinColumn(name = "idseance")
     @OneToOne
-    @JsonManagedReference(value = "salle_seance_fk")
     @Cascade(org.hibernate.annotations.CascadeType.DELETE)
     private Seance seance;
     /*@OneToMany(mappedBy = "salle")

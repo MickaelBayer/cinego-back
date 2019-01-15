@@ -25,10 +25,9 @@ public class PlanSalle {
     private String plan;
     @JoinColumn(name = "idcinema")
     @ManyToOne
-    @JsonBackReference(value = "cinema_plan_fk")
     private Cinema cinema;
     @OneToMany(mappedBy = "planSalle")
-    @JsonManagedReference(value = "plansalle_seance_fk")
+    @JsonBackReference
     @Cascade(org.hibernate.annotations.CascadeType.DELETE)
     private List<Seance> seances;
 

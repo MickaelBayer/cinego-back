@@ -62,7 +62,13 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
         res.addHeader(HEADER_STRING, TOKEN_PREFIX + token);
         res.setContentType("application/json");
         res.setCharacterEncoding("UTF-8");
-        res.getWriter().write("{\"token\":\"" + token + "\"}");
 
+        res.setHeader("Access-Control-Allow-Origin", "*");
+        res.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE");
+        res.setHeader("Access-Control-Max-Age", "3600");
+        res.setHeader("Access-Control-Allow-Headers", "Content-Type, Origin, Cache-Control, X-Requested-With");
+        res.setHeader("Access-Control-Allow-Credentials", "true");
+
+        res.getWriter().write("{\"token\":\"" + token + "\", \"userId\":\""+ ((User) auth.getPrincipal()).getUsername() +"\"}");
     }
 }

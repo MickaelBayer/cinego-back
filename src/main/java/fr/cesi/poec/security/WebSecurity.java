@@ -13,6 +13,8 @@ import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.context.annotation.Bean;
 
+import static fr.cesi.poec.security.SecurityConstants.SAVE_COMMANDE;
+import static fr.cesi.poec.security.SecurityConstants.SAVE_SIEGE_RESA;
 import static fr.cesi.poec.security.SecurityConstants.SIGN_UP_URL;
 
 @EnableWebSecurity
@@ -29,6 +31,9 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.cors().and().csrf().disable().authorizeRequests()
                 .antMatchers(HttpMethod.POST, SIGN_UP_URL).permitAll()
+                .antMatchers(HttpMethod.PUT, SAVE_COMMANDE).authenticated()
+                .antMatchers(HttpMethod.PUT, SAVE_SIEGE_RESA).authenticated()
+                .antMatchers(HttpMethod.POST, SAVE_SIEGE_RESA).authenticated()
                 .anyRequest().authenticated()
                 .and()
                 .addFilter(new JWTAuthenticationFilter(authenticationManager()))

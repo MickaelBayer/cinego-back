@@ -1,7 +1,9 @@
 package fr.cesi.poec.controllers;
 
 import fr.cesi.poec.entities.Commande;
+import fr.cesi.poec.entities.Personne;
 import fr.cesi.poec.repositories.CommandeRepository;
+import fr.cesi.poec.repositories.PersonneRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

@@ -20,19 +20,24 @@ public class Commande {
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     @Column( name = "idcommande" )
     private Long id;
+
     @Column( name = "nbrplacereservees" )
     private int nbPlaces;
+
     @Column( name = "estpaye" )
     private boolean estPaye;
+
     @Column( name = "coutreservation" )
     private float coutReservation;
+
+    //@JsonBackReference(value = "personne_commande_fk")
     @JoinColumn(name = "idpersonne")
     @ManyToOne
-    @JsonBackReference(value = "personne_commande_fk")
     private Personne personne;
+
+    //@JsonBackReference(value = "commande_seance_fk")
     @JoinColumn(name = "idseance")
     @ManyToOne
-    @JsonBackReference(value = "commande_seance_fk")
     private Seance seance;
     //JoinTable => joinColumns = colonne de la join table corresponsant à l'id de la classe en cours
     //          => inverseJoinColumns = colonne de l'id correspondant à l'item dans la liste

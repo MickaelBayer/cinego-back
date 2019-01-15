@@ -1,5 +1,6 @@
 package fr.cesi.poec.controllers;
 
+import ch.qos.logback.core.net.SyslogOutputStream;
 import fr.cesi.poec.entities.Siege;
 import fr.cesi.poec.repositories.SiegeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,8 +50,16 @@ public class SiegeController {
         }
     }
 
+    /**
+     *
+     * @param idSeance
+     * @return
+     */
     @GetMapping("/seance/{idSeance}")
     public ResponseEntity<List<Siege>> getSiegesWithSeance(@PathVariable Long idSeance) {
+        List<Siege> sieges= (List<Siege>)this.siegeRepository.findWithSeance(idSeance);
+        for (Siege siege : sieges) {System.out.println(siege.getSeance().getId());}
+
         return new ResponseEntity<List<Siege>>(
                 (List<Siege>)this.siegeRepository.findWithSeance(idSeance),
                 HttpStatus.OK);
@@ -81,6 +90,21 @@ public class SiegeController {
         } else {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
+    }
+
+    /**
+     *
+     * @param sieges
+     * @return
+     */
+    @PostMapping("/sieges")
+    public ResponseEntity<List<Siege>> updateListSiege(@RequestBody List<Siege> sieges) {
+        for (Siege siege: sieges) {
+            if ( this.siegeRepository.existsById(siege.getId()) ) {
+                this.siegeRepository.save(siege);
+            }
+        }
+        return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
     /**

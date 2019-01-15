@@ -41,6 +41,16 @@ public class PersonneController {
         }
     }
 
+    @GetMapping("/updateUserId/{mail}")
+    public ResponseEntity<Personne> getPersonneByIdWithMail(@PathVariable String mail) {
+        Personne personne = this.personneRepository.findPersonneByMail(mail);
+        if (personne != null) {
+            return new ResponseEntity<Personne>(personne, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<Personne>(HttpStatus.NO_CONTENT);
+        }
+    }
+
     @PostMapping("/sign-up")
     public ResponseEntity<Personne> createPersonne(@RequestBody Personne personne) {
         personne.setMdph5(bCryptPasswordEncoder.encode(personne.getMdph5()));

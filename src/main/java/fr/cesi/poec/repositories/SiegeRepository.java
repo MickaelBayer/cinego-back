@@ -14,6 +14,6 @@ import java.util.List;
 @Repository
 public interface SiegeRepository extends CrudRepository<Siege, Long> {
 
-        @Query(value = "SELECT * FROM siege s WHERE s.idSeance = ?1 GROUP BY s.idsiege", nativeQuery = true)
+        @Query(value = "SELECT s.idsiege, s.estreserve, s.typesiege, s.numsiege, s.numrangee, s.idseance FROM siege s WHERE s.idSeance = ?1 GROUP BY s.idsiege", nativeQuery = true)
         public List<Siege> findWithSeance (Long idSeance);
 }

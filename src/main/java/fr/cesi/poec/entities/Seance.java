@@ -1,7 +1,9 @@
 package fr.cesi.poec.entities;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -17,6 +19,8 @@ import java.util.List;
 // les fonctions de bases nécessaires
 // constricteur sans arg
 // getteurs setteurs
+
+//@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property="id")
 @Entity(name="seance")
 @Data
 @AllArgsConstructor
@@ -31,15 +35,13 @@ public class Seance {
     private String date;
     @JoinColumn(name = "idfilm")
     @ManyToOne()
-    @JsonBackReference(value = "film_seance_fk")
     private Film film;
     @JoinColumn(name = "idplansalle")
-    @OneToOne
-    @JsonBackReference(value = "plansalle_seance_fk")
+    @ManyToOne
     @Cascade(org.hibernate.annotations.CascadeType.DELETE)
     private PlanSalle planSalle;
+    @JsonBackReference
     @OneToMany(mappedBy = "seance")
-    @JsonManagedReference(value = "siege_seance_fk")
     @Cascade(org.hibernate.annotations.CascadeType.DELETE)
     private List<Siege> sieges;
 
