@@ -19,10 +19,7 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import static com.auth0.jwt.algorithms.Algorithm.HMAC512;
-import static fr.cesi.poec.security.SecurityConstants.EXPIRATION_TIME;
-import static fr.cesi.poec.security.SecurityConstants.HEADER_STRING;
-import static fr.cesi.poec.security.SecurityConstants.SECRET;
-import static fr.cesi.poec.security.SecurityConstants.TOKEN_PREFIX;
+import static fr.cesi.poec.security.SecurityConstants.*;
 
 public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
     private AuthenticationManager authenticationManager;
@@ -69,6 +66,7 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
         res.setHeader("Access-Control-Allow-Headers", "Content-Type, Origin, Cache-Control, X-Requested-With");
         res.setHeader("Access-Control-Allow-Credentials", "true");
 
-        res.getWriter().write("{\"token\":\"" + token + "\", \"userId\":\""+ ((User) auth.getPrincipal()).getUsername() +"\"}");
+        res.getWriter().write("{\"token\":\"" + token + "\", \"expiresIn\":\""+ EXPIRATION_TIME + "\", \"userId\":\""
+                                    + ((User) auth.getPrincipal()).getUsername() + "\"}");
     }
 }

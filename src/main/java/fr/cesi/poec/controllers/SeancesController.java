@@ -57,10 +57,10 @@ public class SeancesController {
     }
 
     @GetMapping("/film/{idFilm}")
-    public ResponseEntity<List<Seance>> getSeanceWithFilm(@PathVariable Long idFilm) {
-        return new ResponseEntity<List<Seance>>(
-                (List<Seance>)this.seanceRepository.findWithFilm(idFilm),
-                HttpStatus.OK);
+        public ResponseEntity<List<Seance>> getSeanceWithFilm(@PathVariable Long idFilm) {
+            return new ResponseEntity<List<Seance>>(
+                    (List<Seance>)this.seanceRepository.findWithFilm(idFilm),
+                    HttpStatus.OK);
     }
 
     @GetMapping("/{idCinema}/{idFilm}")

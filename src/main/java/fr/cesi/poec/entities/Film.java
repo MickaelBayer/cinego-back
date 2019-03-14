@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
+import java.util.Date;
 import java.util.List;
 
 
@@ -35,6 +36,8 @@ public class Film {
     private String acteurs;
     @Column( name = "resume" )
     private String resume;
+    @Column( name = "datesortie" )
+    private Date releaseDate;
     @OneToMany(mappedBy = "film")
     @JsonBackReference
     @Cascade(org.hibernate.annotations.CascadeType.DELETE)

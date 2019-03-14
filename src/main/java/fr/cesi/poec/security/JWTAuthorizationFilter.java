@@ -14,9 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import static fr.cesi.poec.security.SecurityConstants.HEADER_STRING;
-import static fr.cesi.poec.security.SecurityConstants.SECRET;
-import static fr.cesi.poec.security.SecurityConstants.TOKEN_PREFIX;
+import static fr.cesi.poec.security.SecurityConstants.*;
 
 public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
 
